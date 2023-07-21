@@ -1,20 +1,20 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import { useSiteMetadata } from "./use-site-metadata";
 
-const Seo = ({ title }) => {
-  const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
+const Seo = ({ title, description, children }) => {
+  const { title: defaultTitle, description: defaultDescription } =
+    useSiteMetadata();
+  const seo = {
+    title: title || defaultTitle,
+    description: description || defaultDescription,
+  };
+
   return (
-    <title>
-      {title} | {data.site.siteMetadata.title}
-    </title>
+    <>
+      <title>{seo.title}</title>
+      <meta name="description" content={seo.description} />
+      {children}
+    </>
   );
 };
 export default Seo;

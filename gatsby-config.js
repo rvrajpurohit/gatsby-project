@@ -10,10 +10,12 @@ module.exports = {
 module.exports = {
   siteMetadata: {
     title: "My First Gatsby Site",
+    description: "Vikram",
   },
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
+    `gatsby-transformer-sharp`,
     {
       resolve: "gatsby-source-filesystem",
       options: {
